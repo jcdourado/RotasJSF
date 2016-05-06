@@ -12,18 +12,18 @@
 	<h:form>
 		<h:panelGrid columns="3">
 			<h:outputLabel value="Usuário: " />
-			<h:inputText name="usuario" id="txtUsuario" value="" size="10" validatorMessage="O usuário deve ter 5 e 20 caracteres" required="">
+			<h:inputText name="usuario" id="txtUsuario" value="#{loginMB.usuario.usuario}" size="10" validatorMessage="O usuário deve ter 5 e 20 caracteres" required="">
 				<f:validateLength minimum="5" maximum="20" />
 			</h:inputText>
 			<h:message for="txtUsuario" />
 			 
 			<h:outputLabel value="Senha: " />		
-			<h:inputSecret name="senha" id="txtSenha" value="" size="10" validatorMessage="A senha deve ter no mínimo 6 caracteres" required="">
+			<h:inputSecret name="senha" id="txtSenha" value="#{loginMB.usuario.senha}" size="10" validatorMessage="A senha deve ter no mínimo 6 caracteres" required="">
 				<f:validateLength minimum="6" />
 			</h:inputSecret>
 			<h:message for="txtSenha" />
 		
-			<h:commandButton value="Entrar" />
+			<h:commandButton value="Entrar" action="#{loginMB.logar}"/>
 		</h:panelGrid>	
 	</h:form>
 </h:body>

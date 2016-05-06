@@ -51,6 +51,6 @@ public class UsuarioDAO {
 			usuarioLogar.setNome(rS.getString("nome"));
 			return usuarioLogar;
 		}
-		return null;
+		return usuarioLogar;
 	}
 }
