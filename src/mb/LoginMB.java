@@ -38,16 +38,40 @@ public class LoginMB {
 		return "usuario";
 	}
 	
-	public String registrar() throws ClassNotFoundException, SQLException{
+	public String registrar() {
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		FacesMessage msg = new FacesMessage();
-		if(dao.adicionar(usuario)){
-			 msg = new FacesMessage("Usuário registrado com sucesso!");
-			 usuario = new Usuario();
-		} else{
+		try {
+			if(dao.adicionar(usuario)){
+				 msg = new FacesMessage("Usuário registrado com sucesso!");
+				 usuario = new Usuario();
+			} else{
+				msg = new FacesMessage("Usuário não registrado!");
+			}
+		} catch (ClassNotFoundException e) {
 			msg = new FacesMessage("Usuário não registrado!");
+			e.printStackTrace();
+		} catch (SQLException e) {
+			msg = new FacesMessage("Usuário não registrado!");
+			e.printStackTrace();
 		}
 		ctx.addMessage("formBody:txtUsuario", msg);
+		return "";
+	}
+	
+	public String excluir(){
+		try {
+			if(dao.remover(usuario.getUsuario())){
+				return "login";
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,"Não foi possível excluir!","Não foi possível excluir este usuário");
+		FacesContext ctx = FacesContext.getCurrentInstance();
+		ctx.addMessage("formLogin:msg", msg);
 		return "";
 	}
 	

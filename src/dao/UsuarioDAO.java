@@ -20,12 +20,12 @@ public class UsuarioDAO {
 		return pS.execute();
 	}
 	
-	public void remover(String usuario) throws ClassNotFoundException, SQLException{
+	public boolean remover(String usuario) throws ClassNotFoundException, SQLException{
 		Connection con = DBUtil.getDBUtil().getConnection();
 		String sql = "DELETE FROM USUARIO WHERE USUARIO = ?";
 		PreparedStatement pS = con.prepareStatement(sql);
 		pS.setString(1, usuario);
-		pS.executeUpdate();
+		return pS.execute();
 	}
 	
 	public void alterar(Usuario usuario) throws ClassNotFoundException, SQLException{

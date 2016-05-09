@@ -9,7 +9,7 @@
 <title>Adicionar Rota</title>
 </h:head>
 <h:body>
-	<h:form>
+	<h:form id="formBody">
 		<h:panelGrid columns="2">
 		
 			<h:outputLabel value="Nome: " />
@@ -22,8 +22,7 @@
 			<h:commandButton name="cmd" value="Voltar" action="#{rotaMB.voltar}" />		
 	
 		</h:panelGrid>
-		
-
+		<h:messages />
 	</h:form>
 </h:body>
 </html>

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.Application;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -41,12 +42,22 @@ public class RotaMB {
 		return "rotas";
 	}
 
-	public String adicionarNovo() throws ClassNotFoundException, SQLException {
+	public String adicionarNovo() {
 		RotaDAO dao = new RotaDAO();
-		dao.adicionar(rota,usuario.getUsuario());
-		rota = new Rota();
-		rotas = dao.consultar("",usuario.getUsuario());
-		return "rotas";
+		try {
+			dao.adicionar(rota,usuario.getUsuario());
+			rota = new Rota();
+			rotas = dao.consultar("",usuario.getUsuario());
+			return "rotas";
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,"Não foi possível registrar essa rota!","Não foi possível registrar");
+		FacesContext ctx = FacesContext.getCurrentInstance();
+		ctx.addMessage("formBody:msg", msg);
+		return "";
 	}
 
 	public List<Rota> getRotas() {
