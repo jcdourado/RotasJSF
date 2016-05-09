@@ -1,10 +1,17 @@
 package model;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Usuario {
+	
 	private String nome;
+	
 	private String usuario;
 	private String email;
+	
 	private String senha;
+	
 	private boolean logado;
 	
 	public boolean isLogado() {
@@ -13,6 +20,8 @@ public class Usuario {
 	public void setLogado(boolean logado) {
 		this.logado = logado;
 	}
+
+	@NotEmpty(message="Nome não pode estar vazio")
 	public String getNome() {
 		return nome;
 	}
@@ -25,6 +34,8 @@ public class Usuario {
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
+
+	@Email(message="O campo precisa ter um email válido")
 	public String getEmail() {
 		return email;
 	}

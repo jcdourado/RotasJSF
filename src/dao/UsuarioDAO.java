@@ -9,7 +9,7 @@ import model.Usuario;
 
 public class UsuarioDAO {
 	
-	public void adicionar(Usuario u) throws SQLException, ClassNotFoundException{
+	public boolean adicionar(Usuario u) throws SQLException, ClassNotFoundException{
 		Connection con = DBUtil.getDBUtil().getConnection();
 		String sql = "INSERT INTO USUARIO(USUARIO,NOME,EMAIL,SENHA) VALUES (?,?,?,?)";
 		PreparedStatement pS = con.prepareStatement(sql);
@@ -17,7 +17,7 @@ public class UsuarioDAO {
 		pS.setString(2, u.getNome());
 		pS.setString(3, u.getEmail());
 		pS.setString(4, u.getSenha());
-		pS.executeUpdate();
+		return pS.execute();
 	}
 	
 	public void remover(String usuario) throws ClassNotFoundException, SQLException{

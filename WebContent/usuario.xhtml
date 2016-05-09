@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"	  
+>
+<h:head>
+<meta charset="UTF-8" />
+<title>Usuário</title>
+</h:head>
+<h:body>
+	<h:form id="formBody">
+		<h:panelGrid columns="3">
+			<h:outputLabel value="Usuário: " />
+			<h:inputText name="usuario" id="txtUsuario" value="#{loginMB.usuario.usuario}" size="10" validatorMessage="O usuário deve ter 5 e 20 caracteres" required="true" requiredMessage="Campo obrigátorio">
+				<f:validateLength minimum="5" maximum="20" />
+			</h:inputText>
+			<h:message for="txtUsuario" />
+			 
+			<h:outputLabel value="Senha: " />		
+			<h:inputSecret name="senha" id="txtSenha" value="#{loginMB.usuario.senha}" size="10" validatorMessage="A senha deve ter no mínimo 6 caracteres" required="">
+				<f:validateLength minimum="6" />
+			</h:inputSecret>
+			<h:message for="txtSenha" />
+			
+			<h:outputLabel value="Nome: " />
+			<h:inputText id="txtNome" value="#{loginMB.usuario.nome}" size="20" maxlength="50" validatorMessage="Preencha seu nome" />
+			<h:message for="txtNome" />
+			
+			<h:outputLabel value="Email: " />
+			<h:inputText type="email" size="20" maxlength="50" name="email" value="#{loginMB.usuario.email}" validatorMessage="Precisa ser um email" id="txtEmail" />
+			<h:message for="txtEmail" />
+			
+			<h:commandButton value="Registrar" action="#{loginMB.registrar}"/>
+			<a href="login.xhtml">Voltar</a>
+		</h:panelGrid> 
+		<h:inputHidden id="txtUsuario2"></h:inputHidden>
+		<h:message for="txtUsuario2"/>	
+	</h:form>
+</h:body>
+</html>
