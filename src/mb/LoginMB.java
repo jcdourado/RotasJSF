@@ -19,7 +19,7 @@ public class LoginMB {
 			usuario = dao.consultar(usuario);
 			if(usuario.getNome() != null){
 				usuario.setLogado(true);
-				return "logado";
+				return "rotas";
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

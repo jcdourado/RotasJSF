@@ -11,12 +11,13 @@ import model.Rota;
 
 public class RotaDAO {
 
-	public void adicionar(Rota rota) throws SQLException, ClassNotFoundException {
+	public void adicionar(Rota rota, String nomeUsuario) throws SQLException, ClassNotFoundException {
 		Connection con = DBUtil.getDBUtil().getConnection();
-		String sql = "INSERT INTO ROTA VALUES(?,?)";
+		String sql = "INSERT INTO ROTA(NOME, TEMPO, USUARIO) VALUES (?,?,?)";
 		PreparedStatement pS = con.prepareStatement(sql);
 		pS.setString(1, rota.getNome());
 		pS.setInt(2, rota.getTempoTotal());
+		pS.setString(3, nomeUsuario);
 		pS.executeUpdate();
 	}
 	
@@ -38,14 +39,15 @@ public class RotaDAO {
 		pS.executeUpdate();
 	}
 	
-	public List<Rota> consultar(String nome) throws SQLException, ClassNotFoundException{
+	public List<Rota> consultar(String nome, String nomeUser) throws SQLException, ClassNotFoundException{
 		Connection con = DBUtil.getDBUtil().getConnection();
-		String sql = "SELECT * FORM ROTA WHERE NOME  LIKE ?";
+		String sql = "SELECT * FROM ROTA WHERE NOME LIKE ? AND USUARIO = ?";
 		PreparedStatement pS = con.prepareStatement(sql);
 		pS.setString(1, "%"+nome+"%");
+		pS.setString(2, nomeUser);
 		ResultSet rS = pS.executeQuery();
 		List<Rota> rotas = new ArrayList<Rota>();
-		if(rS.next()){
+		while(rS.next()){
 			Rota rota = new Rota();
 			rota.setId(rS.getInt("id"));
 			rota.setNome(rS.getString("nome"));
