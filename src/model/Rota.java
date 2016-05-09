@@ -4,9 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Rota {
+	private int id;
 	private List<Ponto> pontos = new ArrayList<Ponto>();
 	private String nome;
 	private int tempoTotal;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public List<Ponto> getPontos() {
 		return pontos;
 	}

@@ -1,10 +1,17 @@
 package model;
 
 public class Ponto {
+	private int id;
 	private String rua;
 	private String cidade;
 	private String estado;
 	private String numero;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getRua() {
 		return rua;
 	}
