@@ -5,6 +5,14 @@ public class Usuario {
 	private String usuario;
 	private String email;
 	private String senha;
+	private boolean logado;
+	
+	public boolean isLogado() {
+		return logado;
+	}
+	public void setLogado(boolean logado) {
+		this.logado = logado;
+	}
 	public String getNome() {
 		return nome;
 	}
