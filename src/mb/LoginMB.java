@@ -21,17 +21,12 @@ public class LoginMB {
 			usuario = dao.consultar(usuario);
 			if(usuario.getNome() != null){
 				usuario.setLogado(true);
-				FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,"Usuário excluido com sucesso!!","Usuário excluido");
-				FacesContext ctx = FacesContext.getCurrentInstance();
-				ctx.addMessage("", msg);
 				return "rotas";
 			}
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,"Usuário ou senha inválidos!","Não foi encontrado este usuário");
 			FacesContext ctx = FacesContext.getCurrentInstance();
 			ctx.addMessage("formBody:txtUsuario", msg);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException  e) {
 			e.printStackTrace();
 		}
 		return "";
@@ -65,7 +60,7 @@ public class LoginMB {
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		FacesMessage msg = new FacesMessage();
 		try {
-			if(dao.adicionar(usuario)){
+			if(!dao.adicionar(usuario)){
 				 msg = new FacesMessage("Usuário registrado com sucesso!");
 				 usuario = new Usuario();
 			} else{
@@ -77,6 +72,11 @@ public class LoginMB {
 		} 
 		ctx.addMessage("formBody:txtUsuario", msg);
 		return "";
+	}
+	
+	public String sair(){
+		usuario = new Usuario();
+		return "login";
 	}
 	
 	public String excluir(){

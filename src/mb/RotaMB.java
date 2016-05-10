@@ -49,9 +49,7 @@ public class RotaMB {
 			rota = new Rota();
 			rotas = dao.consultar("",usuario.getUsuario());
 			return "rotas";
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,"Não foi possível registrar essa rota!","Não foi possível registrar");
