@@ -41,6 +41,26 @@ public class LoginMB {
 		return "usuario";
 	}
 	
+	public String ver(){
+		return "usuario";
+	}
+	
+	public String alterar(){
+		FacesContext ctx = FacesContext.getCurrentInstance();
+		FacesMessage msg = new FacesMessage();
+		try {
+			dao.alterar(usuario);
+			 msg = new FacesMessage("Usuário alterado com sucesso!");
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			msg = new FacesMessage("Usuário não alterado!");
+			e.printStackTrace();
+		} 
+		ctx.addMessage("formBody:txtUsuario2", msg);
+		return "";
+		
+	}
+	
 	public String registrar() {
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		FacesMessage msg = new FacesMessage();
@@ -51,13 +71,10 @@ public class LoginMB {
 			} else{
 				msg = new FacesMessage("Usuário não registrado!");
 			}
-		} catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			msg = new FacesMessage("Usuário não registrado!");
 			e.printStackTrace();
-		} catch (SQLException e) {
-			msg = new FacesMessage("Usuário não registrado!");
-			e.printStackTrace();
-		}
+		} 
 		ctx.addMessage("formBody:txtUsuario", msg);
 		return "";
 	}
@@ -69,9 +86,7 @@ public class LoginMB {
 			FacesContext ctx = FacesContext.getCurrentInstance();
 			ctx.addMessage("formBody:msg", msg);
 			return "login";
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,"Não foi possível excluir!","Não foi possível excluir este usuário");
