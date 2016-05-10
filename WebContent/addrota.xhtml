@@ -13,7 +13,7 @@
 		<h:panelGrid columns="2">
 		
 			<h:outputLabel value="Nome: " />
-			<h:inputText name="nome" value="#{rotaMB.rota.nome}" size="20" maxlength="50" />
+			<h:inputText name="nome" value="#{rotaMB.rota.nome}" size="20" maxlength="50" required="true" requiredMessage="Nome é obrigatório!"/>
 		
 			<h:outputLabel value="Tempo total: " />
 			<h:inputText name="tempo" value="#{rotaMB.rota.tempoTotal}" size="10" />
@@ -22,7 +22,7 @@
 			<h:commandButton name="cmd" value="Voltar" action="#{rotaMB.voltar}" />		
 	
 		</h:panelGrid>
-		<h:messages />
+		<h:messages layout="list"/>
 	</h:form>
 </h:body>
 </html>

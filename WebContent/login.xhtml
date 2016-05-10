@@ -9,7 +9,7 @@
 <title>Login</title>
 </h:head>
 <h:body>
-	<h:form>
+	<h:form id="formBody">
 		<h:panelGrid columns="2">
 			<h:outputLabel value="Usuário: " />
 			<h:inputText name="usuario" id="txtUsuario" value="#{loginMB.usuario.usuario}" size="10" />
@@ -21,6 +21,8 @@
 			<h:commandButton value="Registrar-se" action="#{loginMB.abreRegistrar}"/>
 		</h:panelGrid>
 		<h:messages layout="table"/>
+		<h:inputHidden id="msg" />
+		<h:message for="msg" />
 	</h:form>
 </h:body>
 </html>
