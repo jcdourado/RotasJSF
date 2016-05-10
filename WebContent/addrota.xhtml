@@ -9,7 +9,7 @@
 <title>Adicionar Rota</title>
 </h:head>
 <h:body>
-	<h:form id="formBody">
+	<h:form id="formBody" rendered="#{rotaMB.rota.id == 0}">
 		<h:panelGrid columns="2">
 		
 			<h:outputLabel value="Nome: " />
@@ -19,10 +19,55 @@
 			<h:inputText name="tempo" value="#{rotaMB.rota.tempoTotal}" size="10" />
 				
 			<h:commandButton name="cmd" value="Adicionar" action="#{rotaMB.adicionarNovo}" />
-			<h:commandButton name="cmd" value="Voltar" action="#{rotaMB.voltar}" />		
-	
+			<a href="rotas.xhtml">Voltar</a>
+			
 		</h:panelGrid>
 		<h:messages layout="list"/>
+	</h:form>
+	
+	<h:form rendered="#{rotaMB.rota.id != 0}">
+	<h:outputLabel value="#{rotaMB.rota.nome}" />
+		<h:panelGrid columns="2">
+			<h:outputLabel value="CEP: " />
+			<h:inputText value="#{pontoMB.ponto.cep}" size="9" maxlength="9" name="cep" />
+		
+			<h:outputLabel value="Rua: " />
+			<h:inputText value="#{pontoMB.ponto.rua}" size="30" maxlength="30" name="rua" />
+			
+			<h:outputLabel value="Cidade: " />
+			<h:inputText value="#{pontoMB.ponto.cidade}" size="30" maxlength="30" name="cidade" />
+			
+			<h:outputLabel value="Estado: " />
+			<h:inputText value="#{pontoMB.ponto.estado}" size="20" maxlength="20" name="estado" />
+			
+			<h:outputLabel value="Número: " />
+			<h:inputText value="#{pontoMB.ponto.numero}" size="10" maxlength="10" name="numero" />
+			
+			<h:commandButton name="cmd" value="Adicionar" action="#{pontoMB.adicionar}"/>
+			<h:commandButton name="cmd" value="Calcular Pontos" action="#{pontoMB.gerar}"/>
+		</h:panelGrid>
+		
+		<h:dataTable value="#{pontoMB.pontos}" var="ponto">
+			<h:column>#{ponto.cep}
+				<f:facet name="header">CEP</f:facet>
+			</h:column>
+			
+			<h:column>#{ponto.rua}
+				<f:facet name="header">Rua</f:facet>
+			</h:column>
+			
+			<h:column>#{ponto.cidade}
+				<f:facet name="header">Cidade</f:facet>
+			</h:column>
+			
+			<h:column>#{ponto.estado}
+				<f:facet name="header">Estado</f:facet>
+			</h:column>
+			
+			<h:column>#{ponto.numero}
+				<f:facet name="header">Número</f:facet>
+			</h:column>
+		</h:dataTable>
 	</h:form>
 </h:body>
 </html>

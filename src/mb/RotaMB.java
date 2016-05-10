@@ -20,7 +20,7 @@ public class RotaMB {
 	private Rota rota = new Rota();
 	private List<Rota> rotas = new ArrayList<Rota>();
 	private Usuario usuario;
-	
+
 	public RotaMB() {
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		Application app = ctx.getApplication();
@@ -29,7 +29,7 @@ public class RotaMB {
 
 	public String pesquisar() throws ClassNotFoundException, SQLException {
 		RotaDAO dao = new RotaDAO();
-		rotas = dao.consultar(rota.getNome(),usuario.getUsuario());
+		rotas = dao.consultar(rota.getNome(), usuario.getUsuario());
 		return "rotas";
 	}
 
@@ -45,19 +45,21 @@ public class RotaMB {
 	public String adicionarNovo() {
 		RotaDAO dao = new RotaDAO();
 		try {
-			dao.adicionar(rota,usuario.getUsuario());
-			rota = new Rota();
-			rotas = dao.consultar("",usuario.getUsuario());
-			return "rotas";
+			dao.adicionar(rota, usuario.getUsuario());
+			rota.setId(1);
+			rotas = dao.consultar("", usuario.getUsuario());
+			return "";
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,"Não foi possível registrar essa rota!","Não foi possível registrar");
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Não foi possível registrar essa rota!",
+				"Não foi possível registrar");
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		ctx.addMessage("formBody:msg", msg);
+		rota.setId(0);
 		return "";
 	}
-
+	
 	public List<Rota> getRotas() {
 		return rotas;
 	}
@@ -81,4 +83,5 @@ public class RotaMB {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
 }

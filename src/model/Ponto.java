@@ -6,6 +6,14 @@ public class Ponto {
 	private String cidade;
 	private String estado;
 	private String numero;
+	private String cep;
+	
+	public String getCep() {
+		return cep;
+	}
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
 	public int getId() {
 		return id;
 	}
