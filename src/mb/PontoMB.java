@@ -10,6 +10,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import model.Ponto;
+import services.CEP;
 
 @ManagedBean
 @SessionScoped
@@ -20,6 +21,14 @@ public class PontoMB {
 	public String adicionar(){
 		adicionarPonto();
 		ponto = new Ponto();
+		return "";
+	}
+	
+	public String buscarCEP(){
+		if(ponto.getCep() != null){
+			CEP pegaCep = new CEP();
+			System.out.println(pegaCep.buscarCEP(ponto.getCep().replace("-", "")));
+		}
 		return "";
 	}
 	

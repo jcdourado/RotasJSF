@@ -30,6 +30,14 @@
 		<h:panelGrid columns="2">
 			<h:outputLabel value="CEP: " />
 			<h:inputText value="#{pontoMB.ponto.cep}" size="9" maxlength="9" name="cep" />
+			
+			<h:commandButton value="Buscar CEP" name="cmd" action="#{pontoMB.buscarCEP}"></h:commandButton>
+		</h:panelGrid>
+	
+	</h:form>
+	
+	<h:form rendered="#{rotaMB.rota.id != 0}">
+		<h:panelGrid columns="2">
 		
 			<h:outputLabel value="Rua: " />
 			<h:inputText value="#{pontoMB.ponto.rua}" size="30" maxlength="30" name="rua" />
