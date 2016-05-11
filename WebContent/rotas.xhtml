@@ -34,6 +34,10 @@
 		<h:column>#{rota.tempoTotal}
 			<f:facet name="header">Tempo total</f:facet>
 		</h:column>
+		<h:column>
+			<h:commandButton value="Excluir" action="#{rotaMB.excluir( rota )}" />
+			<f:facet name="header">Ações</f:facet>
+		</h:column>
 	</h:dataTable>
 </h:form>
 </h:body>

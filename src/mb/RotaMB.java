@@ -60,6 +60,17 @@ public class RotaMB {
 		return "";
 	}
 	
+	public String excluir(Rota rota){
+		RotaDAO dao = new RotaDAO();
+		try {
+			dao.remover(rota);
+			return pesquisar();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
+	
 	public List<Rota> getRotas() {
 		return rotas;
 	}
