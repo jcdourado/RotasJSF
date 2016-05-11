@@ -27,7 +27,23 @@ public class PontoMB {
 	public String buscarCEP(){
 		if(ponto.getCep() != null){
 			CEP pegaCep = new CEP();
-			System.out.println(pegaCep.buscarCEP(ponto.getCep().replace("-", "")));
+			
+			
+			String enderecoCompleto = pegaCep.buscarCEP(ponto.getCep());
+			String[] arrJSON = enderecoCompleto.split(",");
+			int i = 0;
+			
+			
+			
+			if(arrJSON.length > 2){
+				for(String aux : arrJSON){
+					arrJSON[i] = aux.split(":")[1].replace("\"", "");
+					i++;
+				}
+				ponto.setRua(arrJSON[1]);
+				ponto.setCidade(arrJSON[4]);
+				ponto.setEstado(arrJSON[5]);
+			}
 		}
 		return "";
 	}
