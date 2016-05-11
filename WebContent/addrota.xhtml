@@ -15,9 +15,6 @@
 			<h:outputLabel value="Nome: " />
 			<h:inputText name="nome" value="#{rotaMB.rota.nome}" size="20" maxlength="50" required="true" requiredMessage="Nome é obrigatório!"/>
 		
-			<h:outputLabel value="Tempo total: " />
-			<h:inputText name="tempo" value="#{rotaMB.rota.tempoTotal}" size="10" />
-				
 			<h:commandButton name="cmd" value="Adicionar" action="#{rotaMB.adicionarNovo}" />
 			<a href="rotas.xhtml">Voltar</a>
 			
@@ -26,7 +23,12 @@
 	</h:form>
 	
 	<h:form rendered="#{rotaMB.rota.id != 0}">
-	<h:outputLabel value="#{rotaMB.rota.nome}" />
+	<h:outputLabel value="Nome: " />
+	<h:outputLabel name="nome" value="#{rotaMB.rota.nome}" size="20" />
+	
+	<h:outputLabel value="Tempo total: " />
+	<h:outputLabel name="tempo" value="#{rotaMB.rota.tempoTotal}" size="10" />
+	
 		<h:panelGrid columns="2">
 			<h:outputLabel value="CEP: " />
 			<h:inputText value="#{pontoMB.ponto.cep}" size="9" maxlength="9" name="cep" />
@@ -54,6 +56,7 @@
 			<h:commandButton name="cmd" value="Adicionar" action="#{pontoMB.adicionar}" rendered="#{pontoMB.ponto.id == 0}"/>
 			<h:commandButton name="cmd" value="Salvar" action="#{pontoMB.salvar}" rendered="#{pontoMB.ponto.id != 0}"/>
 			<h:commandButton name="cmd" value="Calcular Pontos" action="#{pontoMB.gerar}"/>
+			<h:commandButton name="cmd" value="Concluir" action="#{pontoMB.concluir}"/>
 		</h:panelGrid>
 		
 		<h:dataTable value="#{pontoMB.pontos}" var="ponto">

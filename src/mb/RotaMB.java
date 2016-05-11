@@ -46,8 +46,8 @@ public class RotaMB {
 		RotaDAO dao = new RotaDAO();
 		try {
 			dao.adicionar(rota, usuario.getUsuario());
-			rota.setId(1);
 			rotas = dao.consultar("", usuario.getUsuario());
+			rota.setId(rotas.get(rotas.size()-1).getId());
 			return "";
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

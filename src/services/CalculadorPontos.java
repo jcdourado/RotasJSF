@@ -9,15 +9,16 @@ import model.Auxiliar;
 import model.Ponto;
 
 public class CalculadorPontos {
-	JsonReceiver calculator = new JsonReceiver();
-	
+	private JsonReceiver calculator = new JsonReceiver();
+	private int tempo;
 	
 	public List<Ponto> calcularDiferencas(List<Ponto> pontos) {
 		String[] enderecos = new String[pontos.size()];
 		
 		for(int i = 0; i < enderecos.length ; i++){
 			Ponto p = pontos.get(i);
-			enderecos[i] = p.getRua() + ",  " + p.getNumero() + ",  " + p.getCidade() + ",  " + p.getEstado();
+			enderecos[i] = p.getCep() + ",  " + p.getRua() + ",  " + p.getNumero() + ",  " + p.getCidade() + ",  " + p.getEstado();
+			p.setEnderecoCompleto(enderecos[i]);
 		}
 
 		return transformarAuxPonto(calcularCaminho(enderecos), pontos);
@@ -27,13 +28,15 @@ public class CalculadorPontos {
 		List<Ponto> pontos = new ArrayList<Ponto>();
 		pontos.add(pontosRecebidos.get(0));
 		for(Auxiliar a : aux){
-			Ponto p = new Ponto();
-			String[] splitado = a.endereco.split(",  ");
-			p.setRua(splitado[0]);
-			p.setNumero(splitado[1]);
-			p.setCidade(splitado[2]);
-			p.setEstado(splitado[3]);
-			pontos.add(p);
+
+			for(Ponto pAuxiliar : pontosRecebidos){
+			
+				if(pAuxiliar.getEnderecoCompleto().equals(a.endereco)){
+					pontos.add(pAuxiliar);
+				}
+			
+			}
+			
 		}
 		return pontos;
 	}
@@ -82,7 +85,19 @@ public class CalculadorPontos {
 			}
 			x++;
 		}
+		
+		for(int i = 0; i < auxiliar.length ; i++){
+			tempo += auxiliar[i].tempo;
+		}
 	
 		return auxiliar;
+	}
+
+	public int getTempo() {
+		return tempo;
+	}
+
+	public void setTempo(int tempo) {
+		this.tempo = tempo;
 	}
 }

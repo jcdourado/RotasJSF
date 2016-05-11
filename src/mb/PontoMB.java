@@ -1,12 +1,17 @@
 package mb;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.Application;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
+import dao.PontoDAO;
 import model.Ponto;
+import model.Rota;
 import services.CEP;
 import services.CalculadorPontos;
 
@@ -41,9 +46,49 @@ public class PontoMB {
 		return "";
 	}
 	
+	public String buscarTodas(Rota r){
+		PontoDAO dao = new PontoDAO();
+		FacesContext ctx = FacesContext.getCurrentInstance();
+		Application app = ctx.getApplication();
+		RotaMB rota = app.evaluateExpressionGet(ctx, "#{rotaMB}", RotaMB.class);
+		rota.setRota(r);
+		try {
+			pontos = dao.consultar(r.getId());
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		return "addrota";
+	}
+	
+	public String concluir(){
+		PontoDAO dao = new PontoDAO();
+		FacesContext ctx = FacesContext.getCurrentInstance();
+		Application app = ctx.getApplication();
+		RotaMB rota = app.evaluateExpressionGet(ctx, "#{rotaMB}", RotaMB.class);
+		try {
+			dao.remover(rota.getRota().getId());
+		} catch (ClassNotFoundException | SQLException e1) {
+			e1.printStackTrace();
+		}
+		
+		for(Ponto p : pontos){
+			try {
+				dao.adicionar(p, rota.getRota().getId());
+				pontos = new ArrayList<Ponto>();
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return "rotas";
+	}
+	
 	public String gerar(){
 		CalculadorPontos calc = new CalculadorPontos();
 		pontos = calc.calcularDiferencas(pontos);
+		FacesContext ctx = FacesContext.getCurrentInstance();
+		Application app = ctx.getApplication();
+		RotaMB rota = app.evaluateExpressionGet(ctx, "#{rotaMB}", RotaMB.class);
+		rota.getRota().setTempoTotal(calc.getTempo());
 		return "";
 	}
 	
@@ -65,6 +110,10 @@ public class PontoMB {
 	}
 	
 	public String excluir(Ponto p){
+		int posicao = pontos.indexOf(p);
+		for( ; posicao < pontos.size(); posicao++){
+			pontos.get(posicao).setId(posicao);
+		}
 		pontos.remove(p);
 		return "";
 	}
