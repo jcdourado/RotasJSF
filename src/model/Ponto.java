@@ -7,7 +7,14 @@ public class Ponto {
 	private String estado;
 	private String numero;
 	private String cep;
+	private String enderecoCompleto;
 	
+	public String getEnderecoCompleto() {
+		return enderecoCompleto;
+	}
+	public void setEnderecoCompleto(String enderecoCompleto) {
+		this.enderecoCompleto = enderecoCompleto;
+	}
 	public String getCep() {
 		return cep;
 	}

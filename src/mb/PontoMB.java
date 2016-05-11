@@ -1,16 +1,14 @@
 package mb;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.application.Application;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 
 import model.Ponto;
 import services.CEP;
+import services.CalculadorPontos;
 
 @ManagedBean
 @SessionScoped
@@ -44,18 +42,8 @@ public class PontoMB {
 	}
 	
 	public String gerar(){
-		FacesContext ctx = FacesContext.getCurrentInstance();
-		Application app = ctx.getApplication();
-		RotaMB rota = app.evaluateExpressionGet(ctx, "#{rotaMB}", RotaMB.class);
-		rota = new RotaMB();
-		try {
-			rota.getRota().setId(0);
-			pontos = new ArrayList<Ponto>();
-			ponto = new Ponto();
-			return rota.pesquisar();
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
+		CalculadorPontos calc = new CalculadorPontos();
+		pontos = calc.calcularDiferencas(pontos);
 		return "";
 	}
 	
