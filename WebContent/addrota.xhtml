@@ -51,7 +51,8 @@
 			<h:outputLabel value="Número: " />
 			<h:inputText value="#{pontoMB.ponto.numero}" size="10" maxlength="10" name="numero" />
 			
-			<h:commandButton name="cmd" value="Adicionar" action="#{pontoMB.adicionar}"/>
+			<h:commandButton name="cmd" value="Adicionar" action="#{pontoMB.adicionar}" rendered="#{pontoMB.ponto.id == 0}"/>
+			<h:commandButton name="cmd" value="Salvar" action="#{pontoMB.salvar}" rendered="#{pontoMB.ponto.id != 0}"/>
 			<h:commandButton name="cmd" value="Calcular Pontos" action="#{pontoMB.gerar}"/>
 		</h:panelGrid>
 		
@@ -74,6 +75,12 @@
 			
 			<h:column>#{ponto.numero}
 				<f:facet name="header">Número</f:facet>
+			</h:column>
+			
+			<h:column>
+				<h:commandButton value="Editar" action="#{pontoMB.editar( ponto )}" />
+				<h:commandButton value="Excluir" action="#{pontoMB.excluir( ponto )}" />
+				<f:facet name="header">Ações</f:facet>
 			</h:column>
 		</h:dataTable>
 	</h:form>

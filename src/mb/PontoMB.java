@@ -27,14 +27,9 @@ public class PontoMB {
 	public String buscarCEP(){
 		if(ponto.getCep() != null){
 			CEP pegaCep = new CEP();
-			
-			
 			String enderecoCompleto = pegaCep.buscarCEP(ponto.getCep());
 			String[] arrJSON = enderecoCompleto.split(",");
 			int i = 0;
-			
-			
-			
 			if(arrJSON.length > 2){
 				for(String aux : arrJSON){
 					arrJSON[i] = aux.split(":")[1].replace("\"", "");
@@ -56,10 +51,33 @@ public class PontoMB {
 		try {
 			rota.getRota().setId(0);
 			pontos = new ArrayList<Ponto>();
+			ponto = new Ponto();
 			return rota.pesquisar();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
+		return "";
+	}
+	
+	public String salvar(){
+		pontos.add(ponto.getId() - 1 , ponto);
+		pontos.remove(ponto.getId());
+		ponto = new Ponto();
+		return "";
+	}
+	
+	public String editar(Ponto p){
+		ponto.setId(p.getId());
+		ponto.setCep(p.getCep());
+		ponto.setCidade(p.getCep());
+		ponto.setEstado(p.getEstado());
+		ponto.setNumero(p.getNumero());
+		ponto.setRua(p.getRua());
+		return "";
+	}
+	
+	public String excluir(Ponto p){
+		pontos.remove(p);
 		return "";
 	}
 	
@@ -71,6 +89,7 @@ public class PontoMB {
 		this.ponto = ponto;
 	}
 	public void adicionarPonto(){
+		ponto.setId(pontos.size() +1 );
 		this.pontos.add(ponto);
 	}
 
