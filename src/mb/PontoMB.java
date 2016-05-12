@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.Application;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -22,8 +23,10 @@ public class PontoMB {
 	private List<Ponto> pontos = new ArrayList<Ponto>();
 
 	public String adicionar(){
-		adicionarPonto();
-		ponto = new Ponto();
+		if(validar()){
+			adicionarPonto();
+			ponto = new Ponto();
+		}
 		return "";
 	}
 	
@@ -100,8 +103,10 @@ public class PontoMB {
 	}
 	
 	public String editar(Ponto p){
+		p.setId(1);
 		ponto.setId(p.getId());
 		ponto.setIdLista(p.getIdLista());
+		System.out.println(ponto.getIdLista());
 		ponto.setCep(p.getCep());
 		ponto.setCidade(p.getCidade());
 		ponto.setEstado(p.getEstado());
@@ -119,6 +124,32 @@ public class PontoMB {
 		return "";
 	}
 	
+	public boolean validar(){
+		boolean ok = true;
+		FacesContext ctx = FacesContext.getCurrentInstance();
+		if(ponto.getCidade().equals("") || ponto.getCidade() == null){
+			ok = false;
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Digite a cidade", "Digite a cidade");
+			ctx.addMessage("formInput:txtCidade", msg);
+		} 
+		if(ponto.getEstado().equals("") || ponto.getEstado() == null){
+			ok = false;
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Digite o estado", "Digite o estaod");
+			ctx.addMessage("formInput:txtEstado", msg);
+		} 
+		if(ponto.getRua().equals("") || ponto.getRua() == null){
+			ok = false;
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Digite a rua", "Digite a rua");
+			ctx.addMessage("formInput:txtRua", msg);
+		} 
+		if(ponto.getNumero().equals("") || ponto.getNumero() == null){
+			ok = false;
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Digite o número", "Digite o número");
+			ctx.addMessage("formInput:txtNumero", msg);
+		}
+		return ok;
+	}
+	
 	public Ponto getPonto() {
 		return ponto;
 	}
@@ -127,7 +158,8 @@ public class PontoMB {
 		this.ponto = ponto;
 	}
 	public void adicionarPonto(){
-		ponto.setIdLista(pontos.size() - 1);
+		ponto.setIdLista(pontos.size());
+		System.out.println(ponto.getIdLista());
 		this.pontos.add(ponto);
 	}
 

@@ -5,24 +5,24 @@
 	  xmlns:f="http://java.sun.com/jsf/core"	  
 >
 <h:head>
-<meta charset="UTF-8" />
-<title>Login</title>
+	<meta charset="UTF-8" />
+	<title>Login</title>
 </h:head>
 <h:body>
-	<h:form id="formBody">
-		<h:panelGrid columns="2">
-			<h:outputLabel value="Usuário: " />
-			<h:inputText name="usuario" id="txtUsuario" value="#{loginMB.usuario.usuario}" size="10" />
-			 
-			<h:outputLabel value="Senha: " />		
-			<h:inputSecret name="senha" id="txtSenha" value="#{loginMB.usuario.senha}" size="10" />
-
-			<h:commandButton value="Entrar" action="#{loginMB.logar}"/>
-			<h:commandButton value="Registrar-se" action="#{loginMB.abreRegistrar}"/>
-		</h:panelGrid>
-		<h:messages layout="table"/>
-		<h:inputHidden id="msg" />
-		<h:message for="msg" />
-	</h:form>
+		<h:form id="formBody">
+			<h:panelGrid columns="2">
+				<h:outputLabel  value="Usuário: " />
+				<h:inputText name="usuario" id="txtUsuario" value="#{loginMB.usuario.usuario}" size="10" />
+				
+				<h:outputLabel value="Senha: " />		
+				<h:inputSecret name="senha" id="txtSenha" value="#{loginMB.usuario.senha}" size="10" />
+	
+				<h:commandButton value="Entrar" action="#{loginMB.logar}"/>
+				<h:commandButton value="Registrar-se" action="#{loginMB.abreRegistrar}"/>
+			</h:panelGrid>
+			<h:messages layout="table"/>
+			<h:inputHidden id="msg" />
+			<h:message for="msg" />
+		</h:form>
 </h:body>
 </html>

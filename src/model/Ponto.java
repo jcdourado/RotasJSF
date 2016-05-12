@@ -10,7 +10,6 @@ public class Ponto {
 	private String cep;
 	private String enderecoCompleto;
 	
-	
 	public int getIdLista() {
 		return idLista;
 	}

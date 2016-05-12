@@ -38,27 +38,31 @@
 	
 	</h:form>
 	
-	<h:form rendered="#{rotaMB.rota.id != 0}">
-		<h:panelGrid columns="2">
+	<h:form rendered="#{rotaMB.rota.id != 0}" id="formInput">
+		<h:panelGrid columns="3">
 		
 			<h:outputLabel value="Rua: " />
-			<h:inputText value="#{pontoMB.ponto.rua}" size="30" maxlength="30" name="rua" />
+			<h:inputText value="#{pontoMB.ponto.rua}" size="30" maxlength="30" name="rua" id="txtRua"/>
+			<h:message for="txtRua" />
 			
 			<h:outputLabel value="Cidade: " />
-			<h:inputText value="#{pontoMB.ponto.cidade}" size="30" maxlength="30" name="cidade" />
+			<h:inputText value="#{pontoMB.ponto.cidade}" size="30" maxlength="30" name="cidade" id="txtCidade" />
+			<h:message for="txtCidade" />
 			
 			<h:outputLabel value="Estado: " />
-			<h:inputText value="#{pontoMB.ponto.estado}" size="20" maxlength="20" name="estado" />
+			<h:inputText value="#{pontoMB.ponto.estado}" size="20" maxlength="20" name="estado" id="txtEstado" />
+			<h:message for="txtEstado" />
 			
 			<h:outputLabel value="Número: " />
-			<h:inputText value="#{pontoMB.ponto.numero}" size="10" maxlength="10" name="numero" />
+			<h:inputText value="#{pontoMB.ponto.numero}" size="10" maxlength="10" name="numero" id="txtNumero" />
+			<h:message for="txtNumero" />
 			
 			<h:commandButton name="cmd" value="Adicionar" action="#{pontoMB.adicionar}" rendered="#{pontoMB.ponto.id == 0}"/>
 			<h:commandButton name="cmd" value="Salvar" action="#{pontoMB.salvar}" rendered="#{pontoMB.ponto.id != 0}"/>
 			<h:commandButton name="cmd" value="Calcular Pontos" action="#{pontoMB.gerar}"/>
 			<h:commandButton name="cmd" value="Concluir" action="#{pontoMB.concluir}"/>
 		</h:panelGrid>
-		
+			
 		<h:dataTable value="#{pontoMB.pontos}" var="ponto">
 			<h:column>#{ponto.cep}
 				<f:facet name="header">CEP</f:facet>
