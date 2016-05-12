@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:f="http://java.sun.com/jsf/core"	  
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui"	  
 >
 <h:head>
 	<meta charset="UTF-8" />
@@ -11,18 +12,18 @@
 <h:body>
 		<h:form id="formBody">
 			<h:panelGrid columns="2">
-				<h:outputLabel  value="Usuário: " />
-				<h:inputText name="usuario" id="txtUsuario" value="#{loginMB.usuario.usuario}" size="10" />
+				<p:outputLabel  value="Usuário: " />
+				<p:inputText name="usuario" id="txtUsuario" value="#{loginMB.usuario.usuario}" size="10" />
 				
-				<h:outputLabel value="Senha: " />		
-				<h:inputSecret name="senha" id="txtSenha" value="#{loginMB.usuario.senha}" size="10" />
+				<p:outputLabel value="Senha: " />		
+				<p:password name="senha" id="txtSenha" value="#{loginMB.usuario.senha}" size="10" />
 	
-				<h:commandButton value="Entrar" action="#{loginMB.logar}"/>
-				<h:commandButton value="Registrar-se" action="#{loginMB.abreRegistrar}"/>
+				<p:commandButton value="Entrar" action="#{loginMB.logar}"/>
+				<p:commandButton value="Registrar-se" action="#{loginMB.abreRegistrar}"/>
 			</h:panelGrid>
-			<h:messages layout="table"/>
+			<p:messages layout="table"/>
 			<h:inputHidden id="msg" />
-			<h:message for="msg" />
+			<p:message for="msg" />
 		</h:form>
 </h:body>
 </html>

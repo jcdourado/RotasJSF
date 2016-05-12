@@ -134,7 +134,7 @@ public class PontoMB {
 		} 
 		if(ponto.getEstado().equals("") || ponto.getEstado() == null){
 			ok = false;
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Digite o estado", "Digite o estaod");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Digite o estado", "Digite o estado");
 			ctx.addMessage("formInput:txtEstado", msg);
 		} 
 		if(ponto.getRua().equals("") || ponto.getRua() == null){
