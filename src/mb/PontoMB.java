@@ -53,7 +53,7 @@ public class PontoMB {
 		RotaMB rota = app.evaluateExpressionGet(ctx, "#{rotaMB}", RotaMB.class);
 		rota.setRota(r);
 		try {
-			pontos = dao.consultar(r.getId());
+			pontos = transformarIds(dao.consultar(r.getId()));
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
@@ -75,6 +75,7 @@ public class PontoMB {
 			try {
 				dao.adicionar(p, rota.getRota().getId());
 				pontos = new ArrayList<Ponto>();
+				ponto = new Ponto();
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}
@@ -84,7 +85,7 @@ public class PontoMB {
 	
 	public String gerar(){
 		CalculadorPontos calc = new CalculadorPontos();
-		pontos = calc.calcularDiferencas(pontos);
+		pontos = transformarIds(calc.calcularDiferencas(pontos));
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		Application app = ctx.getApplication();
 		RotaMB rota = app.evaluateExpressionGet(ctx, "#{rotaMB}", RotaMB.class);
@@ -93,16 +94,16 @@ public class PontoMB {
 	}
 	
 	public String salvar(){
-		pontos.add(ponto.getId() - 1 , ponto);
-		pontos.remove(ponto.getId());
+		pontos.set(ponto.getIdLista(), ponto);
 		ponto = new Ponto();
 		return "";
 	}
 	
 	public String editar(Ponto p){
 		ponto.setId(p.getId());
+		ponto.setIdLista(p.getIdLista());
 		ponto.setCep(p.getCep());
-		ponto.setCidade(p.getCep());
+		ponto.setCidade(p.getCidade());
 		ponto.setEstado(p.getEstado());
 		ponto.setNumero(p.getNumero());
 		ponto.setRua(p.getRua());
@@ -112,7 +113,7 @@ public class PontoMB {
 	public String excluir(Ponto p){
 		int posicao = pontos.indexOf(p);
 		for( ; posicao < pontos.size(); posicao++){
-			pontos.get(posicao).setId(posicao);
+			pontos.get(posicao).setIdLista(posicao);
 		}
 		pontos.remove(p);
 		return "";
@@ -126,7 +127,7 @@ public class PontoMB {
 		this.ponto = ponto;
 	}
 	public void adicionarPonto(){
-		ponto.setId(pontos.size() +1 );
+		ponto.setIdLista(pontos.size() - 1);
 		this.pontos.add(ponto);
 	}
 
@@ -138,4 +139,10 @@ public class PontoMB {
 		this.pontos = pontos;
 	}
 	
+	public List<Ponto> transformarIds(List<Ponto> lista){
+		for(Ponto p : lista){
+			p.setIdLista(lista.indexOf(p));
+		}
+		return lista;
+	}
 }

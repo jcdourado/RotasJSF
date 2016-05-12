@@ -6,6 +6,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import dao.UsuarioDAO;
 import model.Usuario;
@@ -76,6 +77,9 @@ public class LoginMB {
 	
 	public String sair(){
 		usuario = new Usuario();
+		FacesContext ctx = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession)ctx.getExternalContext().getSession(false);
+        session.invalidate();
 		return "login";
 	}
 	
@@ -85,7 +89,7 @@ public class LoginMB {
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,"Usuário excluido com sucesso!","");
 			FacesContext ctx = FacesContext.getCurrentInstance();
 			ctx.addMessage("formBody:msg", msg);
-			return "login";
+			return sair();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}

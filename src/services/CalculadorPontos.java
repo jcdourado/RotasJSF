@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.json.JsonReceiver;
 
-import model.Auxiliar;
 import model.Ponto;
 
 public class CalculadorPontos {

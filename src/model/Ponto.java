@@ -2,6 +2,7 @@ package model;
 
 public class Ponto {
 	private int id;
+	private int idLista;
 	private String rua;
 	private String cidade;
 	private String estado;
@@ -9,6 +10,13 @@ public class Ponto {
 	private String cep;
 	private String enderecoCompleto;
 	
+	
+	public int getIdLista() {
+		return idLista;
+	}
+	public void setIdLista(int idLista) {
+		this.idLista = idLista;
+	}
 	public String getEnderecoCompleto() {
 		return enderecoCompleto;
 	}

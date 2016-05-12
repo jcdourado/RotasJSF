@@ -1,4 +1,4 @@
-package model;
+package services;
 
 public class Auxiliar {
 	public String endereco;
