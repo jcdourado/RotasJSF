@@ -30,16 +30,16 @@ public class RotaMB {
 	public String pesquisar() throws ClassNotFoundException, SQLException {
 		RotaDAO dao = new RotaDAO();
 		rotas = dao.consultar(rota.getNome(), usuario.getUsuario());
-		return "rotas";
+		return "rotas?faces-redirect=true";
 	}
 
 	public String adicionar() {
 		rota = new Rota();
-		return "addrota";
+		return "addrota?faces-redirect=true";
 	}
 
 	public String voltar() {
-		return "rotas";
+		return "rotas?faces-redirect=true";
 	}
 
 	public String adicionarNovo() {

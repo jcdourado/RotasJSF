@@ -11,19 +11,21 @@
 </h:head>
 <h:body>
 		<h:form id="formBody">
-			<h:panelGrid columns="2">
-				<p:outputLabel  value="Usuário: " />
-				<p:inputText name="usuario" id="txtUsuario" value="#{loginMB.usuario.usuario}" size="10" />
+			<h:panelGrid columns="3">
+				<h:outputLabel  value="Usuário: " />
+				<h:inputText name="usuario" id="txtUsuario" value="#{loginMB.usuario.usuario}" size="10" />
+				<h:message for="txtUsuario" />
 				
-				<p:outputLabel value="Senha: " />		
-				<p:password name="senha" id="txtSenha" value="#{loginMB.usuario.senha}" size="10" />
-	
-				<p:commandButton value="Entrar" action="#{loginMB.logar}"/>
-				<p:commandButton value="Registrar-se" action="#{loginMB.abreRegistrar}"/>
+				<h:outputLabel value="Senha: " />		
+				<h:inputSecret name="senha" id="txtSenha" value="#{loginMB.usuario.senha}" size="10" />
+				<h:message for="txtSenha" />
+		
+				<h:commandButton value="Entrar" action="#{loginMB.logar}"/>
+				<h:commandButton value="Registrar-se" action="#{loginMB.abreRegistrar}"/>
 			</h:panelGrid>
-			<p:messages layout="table"/>
+			<h:messages layout="table"/>
 			<h:inputHidden id="msg" />
-			<p:message for="msg" />
+			<h:message for="msg" />
 		</h:form>
 </h:body>
 </html>

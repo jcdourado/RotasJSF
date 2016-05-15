@@ -60,7 +60,7 @@ public class PontoMB {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		return "addrota";
+		return "addrota?faces-redirect=true";
 	}
 	
 	public String concluir(){
@@ -83,7 +83,7 @@ public class PontoMB {
 				e.printStackTrace();
 			}
 		}
-		return "rotas";
+		return "rotas?faces-redirect=true";
 	}
 	
 	public String gerar(){
@@ -159,7 +159,6 @@ public class PontoMB {
 	}
 	public void adicionarPonto(){
 		ponto.setIdLista(pontos.size());
-		System.out.println(ponto.getIdLista());
 		this.pontos.add(ponto);
 	}
 

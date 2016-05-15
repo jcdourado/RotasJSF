@@ -22,23 +22,23 @@ public class LoginMB {
 			usuario = dao.consultar(usuario);
 			if(usuario.getNome() != null){
 				usuario.setLogado(true);
-				return "rotas";
+				return "rotas?faces-redirect=true";
 			}
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,"Usuário ou senha inválidos!","Não foi encontrado este usuário");
-			FacesContext ctx = FacesContext.getCurrentInstance();
-			ctx.addMessage("formBody:txtUsuario", msg);
 		} catch (ClassNotFoundException | SQLException  e) {
 			e.printStackTrace();
 		}
-		return "";
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,"Usuário ou senha inválidos!","");
+		FacesContext ctx = FacesContext.getCurrentInstance();
+		ctx.addMessage("formBody:msg", msg);
+		return "login";
 	}
 	
 	public String abreRegistrar(){
-		return "usuario";
+		return "usuario?faces-redirect=true";
 	}
 	
 	public String ver(){
-		return "usuario";
+		return "usuario?faces-redirect=true";
 	}
 	
 	public String alterar(){

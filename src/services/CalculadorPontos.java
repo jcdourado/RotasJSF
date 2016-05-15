@@ -13,14 +13,14 @@ public class CalculadorPontos {
 	
 	public List<Ponto> calcularDiferencas(List<Ponto> pontos) {
 		String[] enderecos = new String[pontos.size()];
-		
 		for(int i = 0; i < enderecos.length ; i++){
 			Ponto p = pontos.get(i);
 			enderecos[i] = p.getCep() + ",  " + p.getRua() + ",  " + p.getNumero() + ",  " + p.getCidade() + ",  " + p.getEstado();
 			p.setEnderecoCompleto(enderecos[i]);
 		}
-
-		return transformarAuxPonto(calcularCaminho(enderecos), pontos);
+		List<Ponto> pontosCalculados = transformarAuxPonto(calcularCaminho(enderecos), pontos);
+		System.out.println(pontosCalculados);
+		return pontosCalculados;
 	}
 
 	public List<Ponto> transformarAuxPonto(Auxiliar[] aux, List<Ponto> pontosRecebidos){
@@ -30,11 +30,12 @@ public class CalculadorPontos {
 
 			for(Ponto pAuxiliar : pontosRecebidos){
 			
-				if(pAuxiliar.getEnderecoCompleto().equals(a.endereco)){
+				if(pAuxiliar.getEnderecoCompleto() == a.endereco){
 					pontos.add(pAuxiliar);
 				}
 			
 			}
+			System.out.println(pontos.size());
 			
 		}
 		return pontos;
