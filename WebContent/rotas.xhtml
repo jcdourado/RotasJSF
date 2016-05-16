@@ -5,41 +5,86 @@
 	  xmlns:f="http://java.sun.com/jsf/core"	  
 >
 <h:head>
-<meta charset="UTF-8" />
-<title>Rotas</title>
+	<meta charset="UTF-8" />
+	<title>Rotas</title>
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 </h:head>
 <h:body>
-<h:form id="formLogin">
-	<h:commandButton name="cmd" value="Ver usuario" action="#{loginMB.ver}" />
-	<h:commandButton name="cmd" value="Excluir usuario" action="#{loginMB.excluir}" />
-	<h:commandButton name="cmd" value="Sair" action="#{loginMB.sair}" />
-	<h:inputHidden id="msg" />
-	<h:message for="msg" />
-</h:form>
-
-<h:form>
-	<h:panelGrid columns="4">
-	
-		<h:outputLabel value="Nome: " />
-		<h:inputText name="nome" value="#{rotaMB.rota.nome}" size="20" maxlength="50" />
+<div class="container">
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="rotas.xhtml">Rotas</a>
+		</div>
 		
-		<h:commandButton name="cmd" value="Adicionar" action="#{rotaMB.adicionar}" />
-		<h:commandButton name="cmd" value="Pesquisar" action="#{rotaMB.pesquisar}" />
-	</h:panelGrid>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+			<h:form styleClass="navbar-form navbar-right"  id="formBody" role="search" >
+				<div class="form-group">
+					<h:commandButton styleClass="btn navbar-btn btn-primary" name="cmd" value="Ver usuario" action="#{loginMB.ver}" />
+				</div>
+				<div class="form-group">
+					<h:commandButton name="cmd" styleClass="btn navbar-btn btn-primary" value="Excluir usuario" action="#{loginMB.excluir}" />
+				</div>
+				<div class="form-group">
+					<h:commandButton styleClass="btn navbar-btn btn-primary" name="cmd" value="Sair" action="#{loginMB.sair}" />
+				</div>
+				
+				
+				<h:messages layout="table"/>
+				<h:inputHidden id="msg" />
+				<h:message for="msg" />
+			</h:form>
+		</div>
+	  </div>
+	</nav>
+	<h:form id="formLogin">
+		<h:inputHidden id="msg" />
+		<h:message for="msg" />
+	</h:form>
 	
-	<h:dataTable value="#{rotaMB.rotas}" var="rota" >
-		<h:column>#{rota.nome}
-			<f:facet name="header">Nome</f:facet>
-		</h:column>
-		<h:column>#{rota.tempoTotal}
-			<f:facet name="header">Tempo total</f:facet>
-		</h:column>
-		<h:column>
-			<h:commandButton value="Ver" action="#{pontoMB.buscarTodas( rota )}" />
-			<h:commandButton value="Excluir" action="#{rotaMB.excluir( rota )}" />
-			<f:facet name="header">Ações</f:facet>
-		</h:column>
-	</h:dataTable>
-</h:form>
+	<h:form styleClass="form-horizontal" >
+		
+		<div class="form-group">
+			<h:outputLabel value="Nome: " styleClass="col-sm-1 control-label" />
+			<div class="col-sm-6">
+				<h:inputText name="nome" styleClass="form-control" value="#{rotaMB.rota.nome}" size="20" maxlength="50" />
+			</div>
+			<div class="col-sm-2">
+				<h:commandButton name="cmd" styleClass="btn btn-info form-control" value="Adicionar" action="#{rotaMB.adicionar}" />
+			</div>
+			<div class="col-sm-2">
+				<h:commandButton name="cmd" styleClass="btn btn-info form-control" value="Pesquisar" action="#{rotaMB.pesquisar}" />
+			</div>
+		</div>
+
+		<div class="table-responsive">
+			
+			<h:dataTable value="#{rotaMB.rotas}" var="rota" styleClass="table table-striped table-bordered table-hover table-condensed" >
+				<h:column>#{rota.nome}
+					<f:facet name="header">Nome</f:facet>
+				</h:column>
+				<h:column>#{rota.tempoTotal}
+					<f:facet name="header">Tempo total</f:facet>
+				</h:column>
+				<h:column>
+					<div class="btn-group" role="group" aria-label="...">
+						<h:commandButton styleClass="btn btn-success" value="Ver" action="#{pontoMB.buscarTodas( rota )}" />
+						<h:commandButton styleClass="btn btn-success" value="Excluir" action="#{rotaMB.excluir( rota )}" />
+					</div>
+					<f:facet name="header">Ações</f:facet>
+				</h:column>
+			</h:dataTable>
+		</div>
+	</h:form>
+</div>
+
 </h:body>
 </html>

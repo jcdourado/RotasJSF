@@ -5,38 +5,74 @@
 	  xmlns:f="http://java.sun.com/jsf/core"	  
 >
 <h:head>
-<meta charset="UTF-8" />
-<title>Usuário</title>
+	<meta charset="UTF-8" />
+	<title>Usuário</title>
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 </h:head>
 <h:body>
-	<h:form id="formBody">
-		<h:panelGrid columns="3">
-			<h:outputLabel value="Usuário: " />
-			<h:inputText name="usuario" id="txtUsuario" value="#{loginMB.usuario.usuario}" size="10" validatorMessage="O usuário deve ter 5 e 20 caracteres" required="true" requiredMessage="Campo obrigátorio" disabled="#{loginMB.usuario.logado}">
-				<f:validateLength minimum="5" maximum="20" />
-			</h:inputText>
-			<h:message for="txtUsuario" />
-			 
-			<h:outputLabel value="Senha: " />		
-			<h:inputSecret name="senha" id="txtSenha" value="#{loginMB.usuario.senha}" size="10" validatorMessage="A senha deve ter no mínimo 6 caracteres">
-				<f:validateLength minimum="6" />
-			</h:inputSecret>
-			<h:message for="txtSenha" />
+<div class="container">
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="rotas.xhtml">Rotas</a>
+		</div>
+	   </div>
+	</nav>
+	<h:form id="formBody" styleClass="form-horizontal">
+	
+		<div class="form-group">
+			<h:outputLabel value="Usuário: " styleClass="col-sm-2 control-label" />		 
+			<div class="col-sm-10">
+				<h:inputText styleClass="form-control" name="usuario" id="txtUsuario" value="#{loginMB.usuario.usuario}" size="10" validatorMessage="O usuário deve ter 5 e 20 caracteres" required="true" requiredMessage="Campo obrigátorio" disabled="#{loginMB.usuario.logado}">
+					<f:validateLength minimum="5" maximum="20" />
+				</h:inputText>
+			</div>
+			<h:message for="txtUsuario" styleClass="alert-danger" />
+		</div>
+				
+		<div class="form-group">
+			<h:outputLabel value="Senha: " styleClass="col-sm-2 control-label" />		 
+			<div class="col-sm-10">		
+				<h:inputSecret name="senha"  styleClass="form-control"  id="txtSenha" value="#{loginMB.usuario.senha}" size="10" validatorMessage="A senha deve ter no mínimo 6 caracteres">
+					<f:validateLength minimum="6" />
+				</h:inputSecret>
+			</div>
+			<h:message for="txtSenha" styleClass="alert-danger" />
+		</div>
+		
+		<div class="form-group">
+			<h:outputLabel value="Nome: " styleClass="col-sm-2 control-label"  />		
+			<div class="col-sm-10">
+				<h:inputText styleClass="form-control" id="txtNome" value="#{loginMB.usuario.nome}" size="20" maxlength="50" validatorMessage="Preencha seu nome" />
+			</div>
+			<h:message for="txtNome" styleClass="alert-danger" />
+		</div>
+		
+		<div class="form-group">
+			<h:outputLabel value="Email: " styleClass="col-sm-2 control-label" />		
+			<div class="col-sm-10">
+				<h:inputText type="email" styleClass="form-control" size="20" maxlength="50" name="email" value="#{loginMB.usuario.email}" validatorMessage="Precisa ser um email" id="txtEmail" />
+			</div>
+			<h:message for="txtEmail" styleClass="alert-danger" />
+		</div>
 			
-			<h:outputLabel value="Nome: " />
-			<h:inputText id="txtNome" value="#{loginMB.usuario.nome}" size="20" maxlength="50" validatorMessage="Preencha seu nome" />
-			<h:message for="txtNome" />
-			
-			<h:outputLabel value="Email: " />
-			<h:inputText type="email" size="20" maxlength="50" name="email" value="#{loginMB.usuario.email}" validatorMessage="Precisa ser um email" id="txtEmail" />
-			<h:message for="txtEmail" />
-			
-			<h:commandButton value="Registrar" action="#{loginMB.registrar}" rendered="#{loginMB.usuario.logado != true}"/>
-			<h:commandButton value="Salvar" action="#{loginMB.alterar}" rendered="#{loginMB.usuario.logado == true}"/>
-			<a href="rotas.xhtml">Voltar</a>
-		</h:panelGrid> 
+		<div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-10">
+				<h:commandButton styleClass="btn btn-primary" value="Registrar" action="#{loginMB.registrar}" rendered="#{loginMB.usuario.logado != true}"/>
+				<h:commandButton styleClass="btn btn-primary" value="Salvar" action="#{loginMB.alterar}" rendered="#{loginMB.usuario.logado == true}"/>
+				<a class="btn btn-primary" href="rotas.xhtml">Voltar</a>
+			</div>
+		</div>
 		<h:inputHidden id="txtUsuario2" />
-		<h:message for="txtUsuario2"/>	
+		<h:message  for="txtUsuario2"/>	
 	</h:form>
+</div>
 </h:body>
 </html>

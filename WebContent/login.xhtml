@@ -9,25 +9,56 @@
 	<meta charset="UTF-8" />
 	<title>Login</title>
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-	<link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 </h:head>
 <h:body>
-		<h:form id="formBody">
-			<h:panelGrid columns="3">
-				<h:outputLabel  value="Usuário: " />
-				<h:inputText name="usuario" id="txtUsuario" value="#{loginMB.usuario.usuario}" size="10" />
-				<h:message for="txtUsuario" />
-				
-				<h:outputLabel value="Senha: " />		
-				<h:inputSecret name="senha" id="txtSenha" value="#{loginMB.usuario.senha}" size="10" />
-				<h:message for="txtSenha" />
+<div class="container">
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="rotas.xhtml">Rotas</a>
+		</div>
 		
-				<h:commandButton value="Entrar" action="#{loginMB.logar}"/>
-				<h:commandButton value="Registrar-se" action="#{loginMB.abreRegistrar}"/>
-			</h:panelGrid>
-			<h:messages layout="table"/>
-			<h:inputHidden id="msg" />
-			<h:message for="msg" />
-		</h:form>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		
+			<h:form styleClass="navbar-form navbar-right"  id="formBody" role="search" >
+				<div class="form-group">
+					<h:outputLabel  value="Usuário: " />
+				</div>
+				
+				<div class="form-group">
+					<h:inputText styleClass="form-control" name="usuario" id="txtUsuario" value="#{loginMB.usuario.usuario}" size="10" />
+					<h:message for="txtUsuario" />
+				</div>
+					
+				<div class="form-group">
+					<h:outputLabel value="Senha: " />
+				</div>	
+				<div class="form-group">	
+					<h:inputSecret styleClass="form-control" name="senha" id="txtSenha" value="#{loginMB.usuario.senha}" size="10" />
+					<h:message for="txtSenha" />
+				</div>
+
+				<div class="form-group">
+					<h:commandButton styleClass="btn btn-default navbar-btn btn-primary" value="Entrar" action="#{loginMB.logar}"/>
+				</div>
+				<div class="form-group">
+					<h:commandButton styleClass="btn btn-default navbar-btn btn-primary" value="Registrar-se" action="#{loginMB.abreRegistrar}"/>
+				</div>
+				
+				<h:messages layout="table"/>
+				<h:inputHidden id="msg" />
+				<h:message for="msg" />
+			</h:form>
+		</div>
+	  </div>
+	</nav>
+</div>
 </h:body>
 </html>

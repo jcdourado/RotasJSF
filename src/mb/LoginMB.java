@@ -37,6 +37,10 @@ public class LoginMB {
 		return "usuario?faces-redirect=true";
 	}
 	
+	public String esqueciSenha(){
+		return "esqueci?faces-redirect=true";
+	}
+	
 	public String ver(){
 		return "usuario?faces-redirect=true";
 	}
@@ -71,7 +75,7 @@ public class LoginMB {
 			msg = new FacesMessage("Usuário não registrado!");
 			e.printStackTrace();
 		} 
-		ctx.addMessage("formBody:txtUsuario", msg);
+		ctx.addMessage("formBody:txtUsuario2", msg);
 		return "";
 	}
 	
