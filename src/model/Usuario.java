@@ -32,6 +32,7 @@ public class Usuario {
 		this.usuario = usuario;
 	}
 
+	@NotEmpty(message="Nome não pode estar vazio")
 	@Email(message="O campo precisa ter um email válido")
 	public String getEmail() {
 		return email;
