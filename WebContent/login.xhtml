@@ -16,16 +16,10 @@
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
-	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-	        <span class="sr-only">Toggle navigation</span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	      </button>
 	      <a class="navbar-brand" href="rotas.xhtml">Rotas</a>
 		</div>
 		
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<div>
 		
 			<h:form styleClass="navbar-form navbar-right"  id="formBody" role="search" >
 				<div class="form-group">
@@ -36,8 +30,6 @@
 					<h:inputText styleClass="form-control" name="usuario" id="txtUsuario" value="#{loginMB.usuario.usuario}" size="10" />
 					<h:message for="txtUsuario" />
 				</div>
-				
-
 					
 				<div class="form-group">
 					<h:outputLabel value="Senha: " />
@@ -47,16 +39,21 @@
 					<h:message for="txtSenha" />
 				</div>
 
-				<div class="form-group">
-					<h:commandButton styleClass="btn btn-default navbar-btn btn-primary" value="Entrar" action="#{loginMB.logar}"/>
+			<div class="form-group">
+				<div class="col-xs-2 col-sm-1">
+					<h:commandButton styleClass="btn btn-default navbar-btn btn-primary " value="Entrar" action="#{loginMB.logar}"/>
 				</div>
-				<div class="form-group">
+				<div class="col-xs-1"></div>
+				<div class="col-xs-4 col-sm-2">
 					<h:commandButton styleClass="btn btn-default navbar-btn btn-primary" value="Registrar-se" action="#{loginMB.abreRegistrar}"/>
 				</div>
 				
-				<div class="form-group">
+				<div class="col-sm-1"></div>
+				
+				<div class="col-sm-2">
 					<a class="btn btn-default navbar-btn btn-primary" href="esqueci.xhtml">Esqueceu a senha? </a>
 				</div>
+			</div>
 				
 				<h:messages layout="table"/>
 				<h:inputHidden id="msg" />
