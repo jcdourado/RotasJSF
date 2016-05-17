@@ -39,17 +39,14 @@
 				</div>
 
 				<div class="form-group">
-					<div class="col-xs-2 col-sm-1">
+					<div class="col-xs-2 col-sm-2">
 						<h:commandButton styleClass="btn btn-default navbar-btn btn-primary " value="Entrar" action="#{loginMB.logar}"/>
 					</div>
 					<div class="col-xs-1"></div>
-					<div class="col-xs-4 col-sm-2">
-						<h:commandButton styleClass="btn btn-default navbar-btn btn-primary" value="Registrar-se" action="#{loginMB.abreRegistrar}"/>
-					</div>
 					
 					<div class="col-sm-1"></div>
 					
-					<div class="col-sm-2">
+					<div class="col-xs-4 col-sm-2">
 						<a class="btn btn-default navbar-btn btn-primary" href="esqueci.xhtml">Esqueceu a senha? </a>
 					</div>
 				</div>
@@ -62,6 +59,42 @@
 		</div>
 	  </div>
 	</nav>
+	<div class="jumbotron">
+	  <h1>Rotas</h1>
+	  <p>Faça o calculo de suas rotas de uma maneira bem rápida, flexivel e segura!</p>
+	  <a class="btn btn-default navbar-btn btn-primary" href="usuario.xhtml"> Registrar-se</a>
+	  <div class="row">
+		  <div class="col-sm-6 col-md-4">
+		    <div class="thumbnail">
+		      <img src="bootstrap/img/img1.jpg" alt="Google Maps" />
+		      <div class="caption">
+		        <h3>Rápido!</h3>
+		        <p>Utiliza-se da API do Google Maps, onde conseguimos encontrar o melhor caminho de acordo com o trânsito atual, partindo do primeiro ponto definido até o último!</p>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="col-sm-6 col-md-4">
+		    <div class="thumbnail">
+		      <img src="bootstrap/img/img2.png" alt="Caminho a carro" />
+		      <div class="caption">
+		        <h3>Seguro!</h3>
+		        <p>Ótimo sistema de login, onde é possível recuperar o usuário a partir de seu e-mail. Também é possível alterar todos os dados cadastrados, rotas, pontos. Sem erros!</p>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="col-sm-6 col-md-4">
+		    <div class="thumbnail">
+		      <img src="bootstrap/img/img3.jpg" alt="Caminhão" />
+		      <div class="caption">
+		        <h3>Esteja um passo a frente!</h3>
+		        <p>Entregue da melhor forma possível de acordo com o trânsito atual, uma ferramenta obrigatória a todos os gerentes de logística.</p>
+		      </div>
+		    </div>
+		  </div>
+	  </div>
+	</div>
 </div>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="bootstrap/js/jquery.min.js"></script>
 </h:body>
 </html>

@@ -19,7 +19,6 @@ public class CalculadorPontos {
 			p.setEnderecoCompleto(enderecos[i]);
 		}
 		List<Ponto> pontosCalculados = transformarAuxPonto(calcularCaminho(enderecos), pontos);
-		System.out.println(pontosCalculados);
 		return pontosCalculados;
 	}
 
@@ -35,7 +34,6 @@ public class CalculadorPontos {
 				}
 			
 			}
-			System.out.println(pontos.size());
 			
 		}
 		return pontos;
