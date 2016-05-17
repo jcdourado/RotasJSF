@@ -88,6 +88,9 @@ public class PontoMB {
 	
 	public String gerar(){
 		CalculadorPontos calc = new CalculadorPontos();
+		if(pontos.size() == 0){
+			return "";
+		}
 		pontos = transformarIds(calc.calcularDiferencas(pontos));
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		Application app = ctx.getApplication();

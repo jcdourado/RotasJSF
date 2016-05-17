@@ -15,25 +15,20 @@
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
-	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-	        <span class="sr-only">Toggle navigation</span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	      </button>
 	      <a class="navbar-brand" href="rotas.xhtml">Rotas</a>
 		</div>
 		
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<div>
 
 			<h:form styleClass="navbar-form navbar-right" role="search" >
-				<div class="form-group">
+				<div class="form-group col-xs-4">
 					<h:commandButton styleClass="btn navbar-btn btn-primary" name="cmd" value="Ver usuario" action="#{loginMB.ver}" />
 				</div>
-				<div class="form-group">
+				<div class="form-group col-xs-4">
 					<h:commandButton name="cmd" styleClass="btn navbar-btn btn-primary" value="Excluir usuario" action="#{loginMB.excluir}" />
 				</div>
-				<div class="form-group">
+				<div class="col-xs-1"></div>
+				<div class="form-group col-xs-2">
 					<h:commandButton styleClass="btn navbar-btn btn-primary" name="cmd" value="Sair" action="#{loginMB.sair}" />
 				</div>
 				
@@ -49,9 +44,11 @@
 				<div class="col-sm-6">
 					<h:inputText name="nome" styleClass="form-control" value="#{rotaMB.rota.nome}" size="20" maxlength="50" required="true" requiredMessage="Nome é obrigatório!"/>
 				</div>
-			<div class="col-sm-offset-2 col-sm-2">
-				<h:commandButton styleClass="btn btn-info" name="cmd" value="Adicionar" action="#{rotaMB.adicionarNovo}" />
-				<a  class="btn btn-info" href="rotas.xhtml">Voltar</a>
+			<div class="col-sm-2">
+				<h:commandButton styleClass="btn btn-info form-control" name="cmd" value="Adicionar" action="#{rotaMB.adicionarNovo}" />
+			</div>
+			<div class="col-sm-2">
+				<a  class="btn btn-info form-control" href="rotas.xhtml">Voltar</a>
 			</div>
 		</div>
 			

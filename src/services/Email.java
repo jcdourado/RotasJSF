@@ -20,7 +20,7 @@ public class Email {
 		   //Adicione os destinatários
 		   email.addTo(to, nome);
 		   //Configure o seu email do qual enviará
-		   email.setFrom("qq@gmail.com", "Julio Cezar Dourado");
+		   email.setFrom("aa@gmail.com", "Julio Cezar Dourado");
 		   //Adicione um assunto
 		   email.setSubject("Senha -- Rotas");
 		   //Adicione a mensagem do email
