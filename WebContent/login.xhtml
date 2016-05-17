@@ -36,6 +36,8 @@
 					<h:inputText styleClass="form-control" name="usuario" id="txtUsuario" value="#{loginMB.usuario.usuario}" size="10" />
 					<h:message for="txtUsuario" />
 				</div>
+				
+
 					
 				<div class="form-group">
 					<h:outputLabel value="Senha: " />
@@ -52,9 +54,14 @@
 					<h:commandButton styleClass="btn btn-default navbar-btn btn-primary" value="Registrar-se" action="#{loginMB.abreRegistrar}"/>
 				</div>
 				
+				<div class="form-group">
+					<a class="btn btn-default navbar-btn btn-primary" href="esqueci.xhtml">Esqueceu a senha? </a>
+				</div>
+				
 				<h:messages layout="table"/>
 				<h:inputHidden id="msg" />
 				<h:message for="msg" />
+				
 			</h:form>
 		</div>
 	  </div>

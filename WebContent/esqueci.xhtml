@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui"	  
+>
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Login</title>
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+</h:head>
+<h:body>
+<h:form>
+	<h:outputLabel value="Insira o seu e-mail: " />
+	<h:inputText value="#{emailMB.to}" size="20" maxlength="50" name="email" />
+	<h:commandButton value="Enviar" action="#{emailMB.enviar}" />
+	<a href="login.xhtml">Voltar</a> 
+	<h:messages />
+</h:form>
+</h:body>
+</html>
