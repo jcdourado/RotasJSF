@@ -154,6 +154,7 @@
 					<div class="btn-group" role="group" aria-label="...">
 						<h:commandButton value="Editar" styleClass="btn btn-success" action="#{pontoMB.editar( ponto )}" />
 						<h:commandButton value="Excluir" styleClass="btn btn-success" action="#{pontoMB.excluir( ponto )}" />
+						<h:commandButton value="Ver mapa" styleClass="btn btn-success" action="#{pontoMB.verMap( ponto )}" rendered="#{ponto.idLista != 0}" />
 					</div>
 					<f:facet name="header">Ações</f:facet>
 				</h:column>
