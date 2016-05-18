@@ -1,6 +1,5 @@
 package mb;
 
-import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -97,7 +96,7 @@ public class PontoMB {
 		Application app = ctx.getApplication();
 		RotaMB rota = app.evaluateExpressionGet(ctx, "#{rotaMB}", RotaMB.class);
 		rota.getRota().setTempoTotal(calc.getTempo());
-		return "";
+		return "addrota";
 	}
 	
 	public String salvar(){
