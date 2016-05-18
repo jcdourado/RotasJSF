@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+>
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Mapa</title>
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+</h:head>
+<h:body>
+<div class="container">
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="rotas.xhtml">Rotas</a>
+		</div>
+		
+		<div>
+
+			<h:form styleClass="navbar-form navbar-right" role="search" >
+				<div class="form-group col-xs-4">
+					<h:commandButton styleClass="btn navbar-btn btn-primary" name="cmd" value="Ver usuario" action="#{loginMB.ver}" />
+				</div>
+				<div class="form-group col-xs-4">
+					<h:commandButton name="cmd" styleClass="btn navbar-btn btn-primary" value="Excluir usuario" action="#{loginMB.excluir}" />
+				</div>
+				<div class="col-xs-1"></div>
+				<div class="form-group col-xs-2">
+					<h:commandButton styleClass="btn navbar-btn btn-primary" name="cmd" value="Sair" action="#{loginMB.sair}" />
+				</div>
+				
+			</h:form>
+		</div>
+	  </div>
+	</nav>
+
+    <h:inputHidden id="txtEnderecoPartida" name="txtEnderecoPartida" value="#{ligacaoMB.partida}" />
+                    
+    <h:inputHidden id="txtEnderecoChegada" name="txtEnderecoChegada" value="#{ligacaoMB.chegada}" />
+
+    <div id="mapa" align="center" style="height: 500px; width: 700px"></div>
+        
+    <div id="trajeto-texto" align="center" style="height: 300px; width: 200px"></div>
+        
+    <div id="mapa" align="center" style="height: 500px; width: 700px"></div>
+ </div>
+            
+    <script src="bootstrap/js/jquery.min.js"></script>
+      
+    <!-- Maps API Javascript -->
+        <script src="http://maps.googleapis.com/maps/api/js?key=minhaKey&amp;sensor=false"></script>
+     
+    <!-- Arquivo de inicializaÃ§Ã£o do mapa -->
+    <script src="bootstrap/js/mapa.js"></script>
+</h:body>
+</html>
+
+

@@ -1,5 +1,6 @@
 package mb;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -105,6 +106,20 @@ public class PontoMB {
 		return "";
 	}
 	
+	public String verMap(Ponto p){
+		Ponto pAnterior = pontos.get(pontos.indexOf(p) -1);
+		String partida = "";
+		String chegada = "";
+		partida = pAnterior.getRua() + ", " + pAnterior.getNumero() + ", "+ pAnterior.getCidade();
+		chegada = p.getRua() + ", " + p.getNumero() + ", "+p.getCidade();
+		FacesContext ctx = FacesContext.getCurrentInstance();
+		Application app = ctx.getApplication();
+		LigacaoMB ligacao = app.evaluateExpressionGet(ctx, "#{ligacaoMB}", LigacaoMB.class);
+		ligacao.setChegada(chegada);
+		ligacao.setPartida(partida);
+		return "pontos?faces-redirect=true";
+	}
+	
 	public String editar(Ponto p){
 		p.setId(1);
 		ponto.setId(p.getId());
@@ -120,10 +135,10 @@ public class PontoMB {
 	
 	public String excluir(Ponto p){
 		int posicao = pontos.indexOf(p);
+		pontos.remove(p);
 		for( ; posicao < pontos.size(); posicao++){
 			pontos.get(posicao).setIdLista(posicao);
 		}
-		pontos.remove(p);
 		return "";
 	}
 	
