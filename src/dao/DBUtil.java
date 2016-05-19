@@ -7,8 +7,10 @@ import java.sql.SQLException;
 public class DBUtil {
 	private static final String driver = "com.mysql.jdbc.Driver";
 	private static final String user = "root";
-	private static final String senha = "123456";
-	private static final String url = "jdbc:mysql://localhost:3306/rotas";
+	private static final String senha = "admin";
+	private static final String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+	private static final String port = System.getenv("OPENSHIFT_MYSQL_DB_PORT");
+	private static final String url = "jdbc:mysql://"+host+":"+port+"/rotasjsf";
 	private Connection con;
 	private static DBUtil util;
 	

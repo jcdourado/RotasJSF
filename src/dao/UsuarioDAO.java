@@ -53,4 +53,22 @@ public class UsuarioDAO {
 		}
 		return usuarioLogar;
 	}
+	
+	public Usuario consultar(String email) throws ClassNotFoundException, SQLException{
+		Connection con = DBUtil.getDBUtil().getConnection();
+		String sql = "SELECT * FROM USUARIO WHERE EMAIL = ?";
+		PreparedStatement pS = con.prepareStatement(sql);
+		Usuario u = null;
+		pS.setString(1, email);
+		ResultSet rS = pS.executeQuery();
+		if(rS.next()){
+			u = new Usuario();
+			u.setNome(rS.getString("nome"));
+			u.setSenha(rS.getString("senha"));
+			u.setUsuario(rS.getString("usuario"));
+			u.setEmail(email);
+			return u;
+		}
+		return u;
+	}
 }

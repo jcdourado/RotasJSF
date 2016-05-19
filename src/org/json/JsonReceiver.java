@@ -40,13 +40,16 @@ public class JsonReceiver {
 		int tempoMinutos = 0;
 		int tempoHoras = 0;
 		
-		if(jsonHorasMinutos.length > 2){
-			tempoHoras = Integer.parseInt(jsonHorasMinutos[0].substring(1));
-			tempoMinutos = Integer.parseInt(jsonHorasMinutos[2]);
+		try{
+			if(jsonHorasMinutos.length > 2){
+				tempoHoras = Integer.parseInt(jsonHorasMinutos[0].substring(1));
+				tempoMinutos = Integer.parseInt(jsonHorasMinutos[2]);
+			}
+			else{
+				tempoMinutos = Integer.parseInt(jsonHorasMinutos[0].substring(1));
+			}
 		}
-		else{
-			tempoMinutos = Integer.parseInt(jsonHorasMinutos[0].substring(1));
-		}
+		catch(NumberFormatException ex){}
 		
 		return (tempoHoras*60) + tempoMinutos;
 	}
