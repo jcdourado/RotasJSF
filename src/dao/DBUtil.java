@@ -20,7 +20,7 @@ public class DBUtil {
 	}
 	
 	public static DBUtil getDBUtil() throws ClassNotFoundException, SQLException{
-		if(util == null){
+		if(util == null || util.con.isClosed()){
 			util = new DBUtil();
 		}
 		return util;
